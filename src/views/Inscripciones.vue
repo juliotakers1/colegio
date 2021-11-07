@@ -11,7 +11,7 @@
   <table class="table table-striped">
    <thead>
     <tr>
-      <th scope="col">ID</th>
+      <!--<th scope="col">ID</th>-->
       <th scope="col">NOMBRE ALUMNO</th>
       <th scope="col">APELLIDO ALUMNO</th>
       <th scope="col">GRADO</th>
@@ -24,9 +24,9 @@
     </tr>
   </thead>
   <tbody>
-    <tr v-for="item of inscripciones" :key="item.Id">
+    <tr v-for="item of inscripciones" :key="item._id">
        
-      <td>{{item.Id}}</td>
+      <!--<td>{{item._id}}</td>-->
       <td>{{item.nombreAlumno}}</td>
       <td>{{item.apellidoAlumno}}</td>
       <td>{{item.grado}}</td>
@@ -34,7 +34,8 @@
       <td>{{item.apellidoEncargado}}</td>
       <td>{{item.dpi}}</td>
       <td>{{item.telefono}}</td>
-      <td>{{item.fechaInscripcion}}</td>
+      <td> {{moment(item.fechaInscripcion ).format('MM/DD/YYYY') }}</td>
+       
     </tr>
      
   </tbody>
@@ -44,10 +45,13 @@
 </template>
 
 <script>
+import moment from 'moment'
  import Navbar from '../components/Navbar'
  import {useStore} from 'vuex'
-import { computed, onMounted } from 'vue'
+import { computed, onMounted, Vue } from 'vue'
   
+
+ 
 export default {
     components:{
         Navbar
@@ -60,9 +64,14 @@ export default {
          await store.dispatch('cargarInscripcion')
        })
 
-       return{ inscripciones}
-     }
+       return{ inscripciones   }
+     },
+     methods: {
+	  moment
+	}
+     
 }
+
 </script>
 
 <style>

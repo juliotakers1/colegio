@@ -19,10 +19,10 @@
     <span  class="input-group-text">Grado</span>
     <input type="text" class="form-control" id="grado"  v-model.trim="inscripcion.grado">
 
-     <div class="mb-3 input-group py-2">
+    <!-- <div class="mb-3 input-group py-2">
             <span  class="input-group-text">Fecha Inscripcion</span>
-            <input type="text" class="form-control" id="fechaInscripcion"  v-model.trim="inscripcion.fechaInscripcion">
-        </div>
+            <input type="datetime-local" class="form-control" id="fechaInscripcion"  v-model.trim="inscripcion.fechaInscripcion">
+        </div>-->
   </div> <!--fin div alumno-->
 
   </div>
@@ -42,12 +42,12 @@
 
   <div class="mb-3 input-group">
     <span  class="input-group-text">DPI</span>
-    <input type="text" class="form-control" id="dpi"  v-model.trim="inscripcion.dpi">
+    <input type="number" class="form-control" id="dpi"  v-model.trim="inscripcion.dpi">
   </div>
 
   <div class="mb-3 input-group">
     <span  class="input-group-text">Telefono</span>
-    <input type="text" class="form-control" id="telefono"  v-model.trim="inscripcion.telefono">
+    <input type="number" class="form-control" id="telefono"  v-model.trim="inscripcion.telefono">
   </div>
 
 </div> <!--fin div encargado-->
@@ -71,7 +71,8 @@ export default {
     bloquear(){
       return this.inscripcion.nombreAlumno.trim() === "" ? true : false
     }
-  }
+  },
+  
 }
 </script>
 

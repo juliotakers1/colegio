@@ -30,9 +30,9 @@ export default {
                 grado:"",
                 nombreEncargado:"",
                 apellidoEncargado:"",
-                dpi:"",
-                telefono:"",
-                fechaInscripcion:""
+                dpi:0,
+                telefono:0
+                 
     }
         }
     },
@@ -52,9 +52,8 @@ export default {
                 grado:"",
                 nombreEncargado:"",
                 apellidoEncargado:"",
-                dpi:"",
-                telefono:"",
-                fechaInscripcion:""
+                dpi:0,
+                telefono:0
             }
         }
     },

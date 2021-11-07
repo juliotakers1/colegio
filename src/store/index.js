@@ -12,9 +12,8 @@ export default createStore({
       grado:"",
       nombreEncargado:"",
       apellidoEncargado:"",
-      dpi:"",
-      telefono:"",
-      fechaInscripcion:""
+      dpi:0,
+      telefono:0
     }
   },
   mutations: {
@@ -23,6 +22,7 @@ export default createStore({
     },
     setInscripcion(state,payload){
       state.inscripciones = payload
+      router.push('/inscripciones')
     },
     cargarInscripcion(state,payload){
       state.inscripciones = payload
@@ -92,36 +92,35 @@ export default createStore({
       
     },
       async setInscripciones({commit}, inscripcion){
-      
-        try {
-          const respuesta = await fetch('http://localhost:3400/add_I',  {
-            method: 'POST',
-            mode: 'cors',
-            headers: {
-              'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(inscripcion)
-          })
-           return respuesta.json()
-        } catch (error) {
-          console.log(error)
-        }
+      console.log(inscripcion.proxy,"INDEX")
+        const respuesta =  await axios
+        .post('http://localhost:3000/inscripcion/',inscripcion)
         commit('setInscripcion',inscripcion)
+        console.log(respuesta.data,"respuesta")
+         
+         
     },
     async cargarInscripcion({commit}){
-      try {
-         const res = await fetch('http://localhost:3400/inscripcion')
-         const dataDB = await res.json()
-         const arrayInscripciones = []
+      const resultado = axios
+      .get('http://localhost:3000/inscripcion/')
+      .then(res =>{
+        const datos = res.data.inscripciones
+        console.log(datos)
+        commit('cargarInscripcion',datos)
+      })
+      // try {
+      //    const res = await fetch('http://localhost:3000/inscripcion/')
+      //    const dataDB = await res.json()
+      //    const arrayInscripciones = []
 
-         for(let Id in dataDB){
-           arrayInscripciones.push(dataDB[Id])
-         }
-         console.log(arrayInscripciones)
-         commit('cargarInscripcion',arrayInscripciones)
-      } catch (error) {
-        console.log(error)
-      }
+      //    for(let id in dataDB){
+      //      arrayInscripciones.push(dataDB[id])
+      //    }
+      //    console.log(arrayInscripciones)
+      //    commit('cargarInscripcion',arrayInscripciones)
+      // } catch (error) {
+      //   console.log(error)
+      // }
     }
   },
   modules: {
