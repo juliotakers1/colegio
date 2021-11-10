@@ -1,6 +1,6 @@
 <template>
   <div class="row text-center">
-  <h1 class="fw-bold mb-2 text-center mb-5">Formulario</h1>
+  <h1 class="fw-bold mb-2 text-center mb-5">inscripciones</h1>
   
   <div class="col-6 card "> <!--inicio div alumno-->
   <h5 class="fw-bold py-2">Datos Estudiante</h5>
@@ -15,15 +15,13 @@
     <input type="text" class="form-control" id="apellidoAlumno"  v-model.trim="inscripcion.apellidoAlumno">
   </div>
 
-  <div class="mb-3 input-group">
+   <div class="mb-3 input-group">
     <span  class="input-group-text">Grado</span>
-    <input type="text" class="form-control" id="grado"  v-model.trim="inscripcion.grado">
-
-    <!-- <div class="mb-3 input-group py-2">
-            <span  class="input-group-text">Fecha Inscripcion</span>
-            <input type="datetime-local" class="form-control" id="fechaInscripcion"  v-model.trim="inscripcion.fechaInscripcion">
-        </div>-->
-  </div> <!--fin div alumno-->
+    <select class="form-select"   v-model="inscripcion.grado" >
+    <option   v-for="gradito in grados" :key="gradito._id" :value="gradito.nombreGrado">{{gradito.nombreGrado}}</option>
+    
+    </select>
+  </div>
 
   </div>
 <div class="col-6 card "><!--inicio div encargado-->
@@ -63,6 +61,8 @@
 </template>
 
 <script>
+import {  computed, onMounted, Vue  } from 'vue'
+import {useStore} from 'vuex'
 export default {
   props:{
     inscripcion: Object
@@ -72,6 +72,18 @@ export default {
       return this.inscripcion.nombreAlumno.trim() === "" ? true : false
     }
   },
+  setup() {
+    const store = useStore()
+    const grados = computed(() => store.state.grados)
+
+    onMounted(async() => {
+      await store.dispatch('cargarGrado')
+    })
+
+    return{
+      grados
+    }
+  }
   
 }
 </script>

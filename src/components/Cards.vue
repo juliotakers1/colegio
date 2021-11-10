@@ -27,7 +27,7 @@
   <div class="card-body">
     <img src="../assets/fondos/money-bag-pngrepo-com.png" style="width:100px; " class="me-5">
      
-    <router-link to="/inscripcion" class="card-link text-white fw-bold">Tipo Pago</router-link>
+    <router-link to="/tipoPago" class="card-link text-white fw-bold">Tipo Pago</router-link>
   </div>
 </div>
 </div>
@@ -37,7 +37,7 @@
   <div class="card-body">
     <img src="../assets/fondos/Daco_4448228.png" style="width:150px; " class="me-5">
      
-   <router-link to="/inscripcion" class="card-link text-white fw-bold">Grados</router-link>
+   <router-link to="/grados" class="card-link text-white fw-bold">Grados</router-link>
   </div>
 </div>
 </div>

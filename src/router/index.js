@@ -46,6 +46,31 @@ const routes = [
     meta: {rutaProtegida: true}
   },
   {
+    path: '/grados',
+    name: 'Grados',
+    component: () => import(/* webpackChunkName: "about" */ '../views/Grados.vue'),
+    meta: {rutaProtegida: true}
+  },
+  
+  {
+    path: '/todosGrados',
+    name: 'TodosGrados',
+    component: () => import(/* webpackChunkName: "about" */ '../views/TodosGrados.vue'),
+    meta: {rutaProtegida: true}
+  },
+  {
+    path: '/tipoPago',
+    name: 'TipoPago',
+    component: () => import(/* webpackChunkName: "about" */ '../views/TipoPago.vue'),
+    meta: {rutaProtegida: true}
+  },
+  {
+    path: '/todosTipoPago',
+    name: 'TodosTipoPago',
+    component: () => import(/* webpackChunkName: "about" */ '../views/TodosTipoPago.vue'),
+    meta: {rutaProtegida: true}
+  },
+  {
     path: '/ingresar',
     name: 'Ingresar',
     component: () => import(/* webpackChunkName: "about" */ '../views/Ingresar.vue')

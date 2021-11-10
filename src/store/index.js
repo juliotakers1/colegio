@@ -14,7 +14,23 @@ export default createStore({
       apellidoEncargado:"",
       dpi:0,
       telefono:0
-    }
+    },
+    grados:[],
+    grado:{
+      nombreGrado:""
+    },
+    pagos:[],
+    pago:{
+      nombreEstudiante:"",
+      tipoPago:"",
+      descripcion:"",
+      total:""
+    },
+    tipoPagos:[],
+    tipoPago:{
+      nombrePago: "",
+      totalPago:0
+  }
   },
   mutations: {
     setUser(state,payload){
@@ -26,7 +42,45 @@ export default createStore({
     },
     cargarInscripcion(state,payload){
       state.inscripciones = payload
-    }
+    },
+    eliminarInscripcion(state,payload){
+      state.inscripciones = state.inscripciones.filter(item => item.id !== payload)
+      router.push('/inscripcion')
+    },
+    setGrado(state,payload){
+      state.grados = payload
+      router.push('/todosGrados')
+    },
+    cargarGrado(state,payload){
+      state.grados = payload
+    },
+    eliminarGrado(state,payload){
+      state.grados = state.grados.filter(item => item.id !== payload)
+      router.push('/inscripciones')
+    },
+    setPago(state,payload){
+      state.pagos = payload
+      router.push('/pagos')
+    },
+    cargarPago(state,payload){
+      state.pagos = payload
+    },
+    eliminarPago(state,payload){
+      state.pagos = state.pagos.filter(item => item.id !== payload)
+      router.push('/pagos')
+    },
+    setTipoPago(state,payload){
+      state.tipoPagos = payload
+      router.push('/todosTipoPago')
+    },
+
+    cargarTipoPago(state,payload){
+      state.tipoPagos = payload
+    },
+    eliminarTipoPago(state,payload){
+      state.tipoPagos = state.tipoPagos.filter(item => item.id !== payload)
+      router.push('/tipoPago')
+    },
   },
   actions: {
     async ingresoUsuario({commit},usuario){ 
@@ -101,27 +155,87 @@ export default createStore({
          
     },
     async cargarInscripcion({commit}){
-      const resultado = axios
+      const resultado = await axios
       .get('http://localhost:3000/inscripcion/')
       .then(res =>{
         const datos = res.data.inscripciones
         console.log(datos)
         commit('cargarInscripcion',datos)
       })
-      // try {
-      //    const res = await fetch('http://localhost:3000/inscripcion/')
-      //    const dataDB = await res.json()
-      //    const arrayInscripciones = []
-
-      //    for(let id in dataDB){
-      //      arrayInscripciones.push(dataDB[id])
-      //    }
-      //    console.log(arrayInscripciones)
-      //    commit('cargarInscripcion',arrayInscripciones)
-      // } catch (error) {
-      //   console.log(error)
-      // }
-    }
+       
+    },
+    async eliminarInscripciones({commit},id){
+      const resultado = await axios
+      .delete('http://localhost:3000/inscripcion/_id/'+   id)
+      .catch(err =>{
+        console.log(err)
+      })
+      commit('eliminarInscripcion',id)
+    },
+    async cargarGrado({commit}){
+      const resultado = await axios
+      .get('http://localhost:3000/grado/')
+      .then(res =>{
+        const datos = res.data.grados
+        console.log(datos)
+        commit('cargarGrado',datos)
+      })
+    },
+    async setGrados({commit}, grado){
+      const respuesta = await axios
+      .post('http://localhost:3000/grado/',grado)
+      commit('setGrado',grado)
+    },
+    async eliminarGrados({commit},id){
+      const resultado = await axios
+      .delete('http://localhost:3000/grado/_id/'+   id)
+      .catch(err =>{
+        console.log(err)
+      })
+      commit('eliminarGrado',id)
+    },
+    async cargarPago({commit},pago){
+      const resultado = await axios
+      .get('http://localhost:3000/pago/')
+      .then(res =>{
+        const datos = res.data.pagos
+        commit('cargarPago',datos)
+      })
+    },
+    async setPago({commit},pago){
+      const resultado = await axios
+      .post('http://localhost:3000/pago/',pago)
+      commit('setPago',pago)
+    },
+    async eliminarPagos({commit},id){
+      const resultado = await axios
+      .delete('http://localhost:3000/pago/_id/'+   id)
+      .catch(err =>{
+        console.log(err)
+      })
+      commit('eliminarPago',id)
+    },
+    async cargarTipoPago({commit},tipoPago){
+      const resultado = await axios
+      .get('http://localhost:3000/tipoPago/')
+      .then(res =>{
+        const datos = res.data.tipoPagos
+        commit('cargarTipoPago',datos)
+      })
+    },
+    async setTipoPagos({commit},tipoPago){
+      const resultado = await axios
+      .post('http://localhost:3000/tipoPago/',tipoPago)
+      commit('setTipoPago',tipoPago)
+    },
+    async eliminarTipoPagos({commit},id){
+      const resultado = await axios
+      .delete('http://localhost:3000/tipoPago/_id/'+   id)
+      .catch(err =>{
+        console.log(err)
+      })
+      commit('eliminarTipoPago',id)
+    },
   },
   modules: {
   },

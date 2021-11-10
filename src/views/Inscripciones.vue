@@ -5,8 +5,9 @@
  
     <h1 class="fw-bold text-center my-2 ">Inscripciones</h1>
 <div class="btn-group py-5" role="group" aria-label="Basic example">
-  <router-link class="btn btn-primary" to="/inscripcion">Agregar</router-link>
-   
+  <router-link class="btn btn-primary me-2" to="/inscripcion">Agregar Inscripción</router-link>
+     <router-link class="btn btn-success me-2" to="/grados">Nuevo Grado</router-link>
+<router-link class="btn btn-secondary me-2" to="/todosGrados">  Grados</router-link>
 </div> 
   <table class="table table-striped">
    <thead>
@@ -20,7 +21,7 @@
       <th scope="col">DPI</th>
       <th scope="col">TELEFONO</th>
       <th scope="col">FECHA</th>
-       
+       <th scope="col"></th>
     </tr>
   </thead>
   <tbody>
@@ -35,7 +36,7 @@
       <td>{{item.dpi}}</td>
       <td>{{item.telefono}}</td>
       <td> {{moment(item.fechaInscripcion ).format('MM/DD/YYYY') }}</td>
-       
+       <td><button class="btn btn-danger btn-sm mr-2" @click="eliminarInscripciones(item._id)">Eliminar</button></td>
     </tr>
      
   </tbody>
@@ -47,7 +48,7 @@
 <script>
 import moment from 'moment'
  import Navbar from '../components/Navbar'
- import {useStore} from 'vuex'
+ import {useStore, mapActions} from 'vuex'
 import { computed, onMounted, Vue } from 'vue'
   
 
@@ -56,6 +57,10 @@ export default {
     components:{
         Navbar
     },
+    methods: {
+       ...mapActions(['eliminarInscripciones']),
+	  moment
+	},
      setup() {
        const store = useStore()
        const inscripciones = computed(() => store.state.inscripciones)
@@ -66,9 +71,7 @@ export default {
 
        return{ inscripciones   }
      },
-     methods: {
-	  moment
-	}
+     
      
 }
 
