@@ -8,7 +8,7 @@ const InscripcionSchema = new mongoose.Schema({
     },
     apellidoAlumno: {
         type: String,
-        required: true
+        required: true 
     },
     grado: {
         type: String,
@@ -33,6 +33,7 @@ const InscripcionSchema = new mongoose.Schema({
     },
     fechaInscripcion:  {
         type: Date,
+        required:false,
         default: Date.now()
     }
 });

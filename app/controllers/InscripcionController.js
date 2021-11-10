@@ -2,7 +2,7 @@ const Inscripcion = require('../models/Inscripcion');
 
 function index(req,res){
     Inscripcion.find({})
-    .then(inscripciones =>{
+    .then(inscripciones =>{ 
         if(inscripciones.length) return res.status(200).send({inscripciones});
         return res.status(204).send({message: 'NO CONTENT'});
     }).catch(error => res.status(500).send({error}));
@@ -16,8 +16,9 @@ function show(req,res){
 }
 
 function create(req,res){
-     new Inscripcion(req.body).save().then(inscripcion => res.status(201).send({inscripcion})).catch(error => res.status(500).send({error}));
-
+    console.log(req.body);
+    new Inscripcion(req.body).save().then(inscripcion => res.status(201).send({inscripcion})).catch(error => res.status(500).send({error}));
+    
 }
 
 function update(req,res){

@@ -7,7 +7,7 @@ module.exports = {
         if(this.connection) return this.connection;
         return mongoose.connect(CONFIG.DB).then(connection => {
             this.connection = this.connection;
-            console.log('conexion a base de datos exitosa perro');
+            console.log('conexion a base de datos lista');
         }).catch(error => console.log(error));
     }
 }
