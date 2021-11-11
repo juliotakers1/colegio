@@ -30,6 +30,14 @@ export default createStore({
     tipoPago:{
       nombrePago: "",
       totalPago:0
+  }, 
+  reportes:[],
+  reporte:{
+    nombreMaestro:"",
+    apellidoMaestro:"",
+    edadMaestro:0,
+    telefonoMaestro:0,
+    descripcion:""
   }
   },
   mutations: {
@@ -81,6 +89,12 @@ export default createStore({
       state.tipoPagos = state.tipoPagos.filter(item => item.id !== payload)
       router.push('/tipoPago')
     },
+    cargarReporte(state,payload){
+      state.reportes = payload
+    },
+    setReporte(state,payload){
+      state.reportes = payload
+    }
   },
   actions: {
     async ingresoUsuario({commit},usuario){ 
@@ -236,6 +250,14 @@ export default createStore({
       })
       commit('eliminarTipoPago',id)
     },
+    async cargarReportes({commit},reporte){
+      const resultado = await axios
+      .get('http://localhost:3000/reporte/')
+      .then(res =>{
+        const datos = res.data.reportes
+        commit('cargarReporte',datos)
+      })
+    }
   },
   modules: {
   },
