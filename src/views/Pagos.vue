@@ -2,6 +2,11 @@
 <div >
     <Navbar />
     <div class="container py-3">
+    <div class="card-body">
+            <router-link to="/todospagos" class="card-link  ">
+            <img src="../assets/fondos/backbutton_120674.png" style="width:50px; "  >
+            </router-link>
+        </div>
      <form  @submit.prevent="procesarFormulario">
             <FormP :pago="pago" />
               

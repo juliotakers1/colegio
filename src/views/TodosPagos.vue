@@ -2,7 +2,11 @@
 <div class="">
  <Navbar />
 <div class="container">
- 
+ <div class="card-body">
+            <router-link to="/" class="card-link  ">
+            <img src="../assets/fondos/backbutton_120674.png" style="width:50px; "  >
+            </router-link>
+        </div>
     <h1 class="fw-bold text-center my-2 ">Pagos</h1>
 <div class="btn-group py-5" role="group" aria-label="Basic example">
   <router-link class="btn btn-primary me-2" to="/pagos">Agregar Pago</router-link>

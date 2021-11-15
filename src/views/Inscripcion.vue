@@ -3,7 +3,12 @@
     
     <Navbar />
     <div class="container py-2">
-        
+        <div class="card-body">
+            <router-link to="/inscripciones" class="card-link text-white fw-bold">
+            <img src="../assets/fondos/backbutton_120674.png" style="width:50px; " class="me-5">
+            </router-link>
+        </div>
+
          <form  @submit.prevent="procesarFormulario">
              <FormA :inscripcion="inscripcion" />
          </form>

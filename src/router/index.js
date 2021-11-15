@@ -22,6 +22,12 @@ const routes = [
     meta: {rutaProtegida: true}
   },
   {
+    path: '/editarInscripcion/_id/:_id',
+    name: 'EditarInscripcion',
+    component: () => import(/* webpackChunkName: "about" */ '../views/EditarInscripcion.vue'),
+    meta: {rutaProtegida: true}
+  },
+  {
     path: '/pagos',
     name: 'Pagos',
     component: () => import(/* webpackChunkName: "about" */ '../views/Pagos.vue'),
@@ -40,9 +46,21 @@ const routes = [
     meta: {rutaProtegida: true}
   },
   {
+    path: '/reportes',
+    name: 'Reportes',
+    component: () => import(/* webpackChunkName: "about" */ '../views/Reportes.vue'),
+    meta: {rutaProtegida: true}
+  },
+  {
     path: '/nuevoreporte',
     name: 'NuevoReporte',
     component: () => import(/* webpackChunkName: "about" */ '../views/NuevoReporte.vue'),
+    meta: {rutaProtegida: true}
+  },
+  {
+    path: '/editarReportes/_id/:_id',
+    name: 'EditarReportes',
+    component: () => import(/* webpackChunkName: "about" */ '../views/EditarReportes.vue'),
     meta: {rutaProtegida: true}
   },
   {
@@ -59,6 +77,12 @@ const routes = [
     meta: {rutaProtegida: true}
   },
   {
+    path: '/editarGrado/_id/:_id',
+    name: 'EditarGrado',
+    component: () => import(/* webpackChunkName: "about" */ '../views/EditarGrado.vue'),
+    meta: {rutaProtegida: true}
+  },
+  {
     path: '/tipoPago',
     name: 'TipoPago',
     component: () => import(/* webpackChunkName: "about" */ '../views/TipoPago.vue'),
@@ -70,6 +94,7 @@ const routes = [
     component: () => import(/* webpackChunkName: "about" */ '../views/TodosTipoPago.vue'),
     meta: {rutaProtegida: true}
   },
+  
   {
     path: '/ingresar',
     name: 'Ingresar',

@@ -3,7 +3,11 @@
     
     <Navbar />
     <div class="container py-2">
-        
+        <div class="card-body">
+            <router-link to="/todosGrados" class="card-link  ">
+            <img src="../assets/fondos/backbutton_120674.png" style="width:50px; "  >
+            </router-link>
+        </div>
          <form  @submit.prevent="procesarFormulario">
              <FormG :grado="grado" />
          </form>

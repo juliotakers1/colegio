@@ -2,7 +2,11 @@
 <div class="">
  <Navbar />
 <div class="container">
- 
+ <div class="card-body">
+            <router-link to="/" class="card-link  ">
+            <img src="../assets/fondos/backbutton_120674.png" style="width:50px; "  >
+            </router-link>
+        </div>
     <h1 class="fw-bold text-center my-2 ">Tipos de Pago</h1>
 <div class="btn-group py-5" role="group" aria-label="Basic example">
   <router-link class="btn btn-primary me-2" to="/tipoPago">Agregar Tipo Pago</router-link>
@@ -16,7 +20,7 @@
       <th scope="col">NOMBRE PAGO</th>
       <th scope="col">TOTAL</th>
       <th scope="col"></th>
-       <th scope="col"></th>
+        
        
        
     </tr>
@@ -28,9 +32,7 @@
       <td>{{item.nombrePago}}</td>
       <td>{{item.totalPago}}</td>
       <td> <button class="btn btn-danger btn-sm mr-2" @click="eliminarTipoPagos(item._id)">Eliminar</button></td>
-      <td>  
-        Editar
-       </td>
+       
        
        
        

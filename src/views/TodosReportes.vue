@@ -1,14 +1,18 @@
 <template>
 <div class="">
  <Navbar />
-<div class="container">
- 
+<div class="container" >
+ <div class="card-body">
+            <router-link to="/" class="card-link  ">
+            <img src="../assets/fondos/backbutton_120674.png" style="width:50px; "  >
+            </router-link>
+        </div>
     <h1 class="fw-bold text-center my-2 ">Reportes</h1>
 <div class="btn-group py-5" role="group" aria-label="Basic example">
-  <router-link class="btn btn-primary" to="/nuevoreporte">Nuevo Reporte</router-link>
+  <router-link class="btn btn-primary" to="/reportes">Nuevo Reporte</router-link>
    
 </div> 
-  <table class="table table-striped">
+  <table class="table table-striped" >
    <thead>
     <tr>
       <th scope="col">NOMBRE</th>
@@ -17,6 +21,8 @@
       <th scope="col">TELEFONO</th>
       <th scope="col">DESCRIPCION</th>
       <th scope="col">FECHA</th>
+       <th scope="col"></th>
+       <th scope="col"></th>
        <th scope="col"></th>
     </tr>
   </thead>
@@ -29,8 +35,18 @@
       <td> {{item.edadMaestro}}</td>
       <td> {{item.telefonoMaestro}}</td>
       <td> {{item.descripcion}}</td>
-      <td> {{item.fecha}}</td>
-      <td><button class="btn btn-success">Generar Reporte</button></td>
+      <td> {{moment(item.fecha).format('MM/DD/YYYY')}}</td>
+      <td><button class="btn btn-danger btn-sm mr-2" @click="eliminarReportes(item._id)">Eliminar</button></td>
+      <td><router-link class="btn btn-warning btn-sm mr-2" 
+      :to="{
+        name: 'EditarReportes',
+         params: {
+           _id: item._id
+         } 
+         }">
+        Editar
+      </router-link></td>
+      <td><button class="btn btn-success"  >Generar Reporte</button></td>
     </tr>
      
      
@@ -44,24 +60,42 @@
  import Navbar from '../components/Navbar'
 import {useStore, mapState, mapActions} from 'vuex'
 import { computed, onMounted, Vue } from 'vue'
-
+import moment from 'moment' 
+// import jsPDF from 'jspdf'
+// import html2canvas from 'html2canvas'
 export default {
     components:{
         Navbar
     },
     methods: {
-      
+      ...mapActions(['cargarReportes','eliminarReportes']),
+      moment,
+      // createPDF(){
+      //    window.html2canvas = html2canvas;
+      //    var doc = new jsPDF("p","pt","a4");
+      //    doc.html(document.querySelector("#app"),{
+      //      callback: function(pdf){
+      //        pdf.save('reporte.pdf');
+      //      }
+      //    });
+         
+
+        
+      //}
     },
     setup() {
       const store = useStore()
       const reportes = computed(() => store.state.reportes)
 
-      onMounted(async() => {
-        await store.dispatch('cargarReportes')
-      })
+      // onMounted(async() => {
+      //   await store.dispatch('cargarReportes')
+      // })
 
       return{reportes}
-    }
+    },
+    created() {
+      this.cargarReportes()
+    },
 }
 </script>
 

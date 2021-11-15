@@ -2,7 +2,11 @@
 <div class="">
  <Navbar />
 <div class="container">
- 
+          <div class="card-body">
+            <router-link to="/" class="card-link  ">
+            <img src="../assets/fondos/backbutton_120674.png" style="width:50px; "  >
+            </router-link>
+        </div>
     <h1 class="fw-bold text-center my-2 ">Inscripciones</h1>
 <div class="btn-group py-5" role="group" aria-label="Basic example">
   <router-link class="btn btn-primary me-2" to="/inscripcion">Agregar Inscripción</router-link>
@@ -22,6 +26,7 @@
       <th scope="col">TELEFONO</th>
       <th scope="col">FECHA</th>
        <th scope="col"></th>
+       <th scope="col"></th>
     </tr>
   </thead>
   <tbody>
@@ -37,8 +42,21 @@
       <td>{{item.telefono}}</td>
       <td> {{moment(item.fechaInscripcion ).format('MM/DD/YYYY') }}</td>
        <td><button class="btn btn-danger btn-sm mr-2" @click="eliminarInscripciones(item._id)">Eliminar</button></td>
+       <td>
+       <router-link class="btn btn-warning btn-sm mr-2" 
+      :to="{
+        name: 'EditarInscripcion',
+         params: {
+           _id: item._id
+         } 
+         }">
+        Editar
+      </router-link>
+       </td>
     </tr>
      
+      
+
   </tbody>
 </table>
 </div>
@@ -46,7 +64,7 @@
 </template>
 
 <script>
-import moment from 'moment'
+import moment from 'moment' 
  import Navbar from '../components/Navbar'
  import {useStore, mapActions} from 'vuex'
 import { computed, onMounted, Vue } from 'vue'
@@ -58,20 +76,22 @@ export default {
         Navbar
     },
     methods: {
-       ...mapActions(['eliminarInscripciones']),
+       ...mapActions(['eliminarInscripciones','cargarInscripcion']),
 	  moment
 	},
      setup() {
        const store = useStore()
        const inscripciones = computed(() => store.state.inscripciones)
 
-       onMounted(async() => {
-         await store.dispatch('cargarInscripcion')
-       })
+      //  onMounted(async() => {
+      //    await store.dispatch('cargarInscripcion')
+      //  })
 
        return{ inscripciones   }
      },
-     
+     created() {
+       this.cargarInscripcion()
+     },
      
 }
 

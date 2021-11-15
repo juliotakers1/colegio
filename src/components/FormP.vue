@@ -51,7 +51,7 @@
     Guardar
     </button>
   </div>
-  {{pago}}
+   
   </div>
 </template>
 
