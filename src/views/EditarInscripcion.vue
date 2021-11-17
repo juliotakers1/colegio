@@ -3,7 +3,7 @@
     
     <Navbar />
     <div class="container py-2">
-        Editar {{ $route.params._id}} - {{inscripcion}}
+  <!--      Editar {{ $route.params._id}} - {{inscripcion}}-->
          <form  @submit.prevent="updateInscripciones(inscripcion)">
              <FormA :inscripcion="inscripcion" />
          </form>

@@ -38,7 +38,7 @@
          
   </div> <!--fin div alumno-->
 <div class="mb-3 input-group">
-    <span  class="input-group-text">Tipo Pago</span>
+    <span  class="input-group-text">Total</span>
     <select class="form-select" aria-label=" " v-model.trim="pago.total">
     <option selected  v-for=" tipo in tipoPagos" :key="tipo._id" :value="tipo.totalPago">{{tipo.nombrePago+" - "+ "Q "+tipo.totalPago}}</option>
     </select>
