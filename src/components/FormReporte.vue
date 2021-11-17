@@ -1,8 +1,8 @@
 <template>
   <div class="  text-center py-1 mr-2" >
   
-  <div class="  col-12 card  justify-center   float-start" id="appo"> <!--inicio div alumno-->
-   
+  <div class="  col-8   justify-center   float-start" id="appo"> <!--inicio div alumno-->
+   <img src="../assets/fondos/fondito.png" alt="" width="90"  >
   <h2 class="fw-bold mb-2 text-center mb-2 text-dark ">Reporte</h2>
 
   <div class=" mb-3 input-group py-3 px-5">
@@ -33,26 +33,17 @@
 
   </div>
  
- 
-  
-  
-
-    
-  
-
- 
-    
+   
     <div class="btn-group col-6  py-2  " role="group" aria-label="Basic example">
-    <button class="btn btn-primary float-end me-2" type="submit" :disabled="bloquear">
-    Guardar
-    </button>
-      
+     
+     <button class="btn btn-success"  @click="createPDF">Generar Reporte</button>
   </div>
   </div>
 </template>
 
 <script>
- 
+import jsPDF from 'jspdf'
+import html2canvas from 'html2canvas'
 export default {
 props:{
     reporte: Object
@@ -63,7 +54,22 @@ props:{
     }
   },
   methods: {
-    
+    createPDF(){
+        var image        
+         window.html2canvas = html2canvas;
+          
+         var doc=new jsPDF('p', 'pt', 'letter');
+                     
+         doc.html(document.querySelector("#appo") ,{
+            
+           callback: function(pdf){
+             pdf.save('reporte.pdf');
+           }
+         });
+         
+
+        
+      }
   },
 }
 </script>

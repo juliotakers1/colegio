@@ -64,6 +64,12 @@ const routes = [
     meta: {rutaProtegida: true}
   },
   {
+    path: '/GenerarReporte/_id/:_id',
+    name: 'GenerarReporte',
+    component: () => import(/* webpackChunkName: "about" */ '../views/GenerarReporte.vue'),
+    meta: {rutaProtegida: true}
+  },
+  {
     path: '/grados',
     name: 'Grados',
     component: () => import(/* webpackChunkName: "about" */ '../views/Grados.vue'),

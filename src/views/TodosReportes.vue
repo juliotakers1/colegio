@@ -23,7 +23,7 @@
       <th scope="col">FECHA</th>
        <th scope="col"></th>
        <th scope="col"></th>
-       <th scope="col"></th>
+        <th scope="col"></th>
     </tr>
   </thead>
   <tbody>
@@ -46,7 +46,13 @@
          }">
         Editar
       </router-link></td>
-      <td><button class="btn btn-success"  >Generar Reporte</button></td>
+      <td><router-link class="btn btn-success btn-sm mr-2" :to="{
+        name: 'GenerarReporte',
+         params: {
+           _id: item._id
+         } 
+         }">Generar Reporte</router-link></td>
+       
     </tr>
      
      
@@ -70,18 +76,7 @@ export default {
     methods: {
       ...mapActions(['cargarReportes','eliminarReportes']),
       moment,
-      // createPDF(){
-      //    window.html2canvas = html2canvas;
-      //    var doc = new jsPDF("p","pt","a4");
-      //    doc.html(document.querySelector("#app"),{
-      //      callback: function(pdf){
-      //        pdf.save('reporte.pdf');
-      //      }
-      //    });
-         
-
-        
-      //}
+       
     },
     setup() {
       const store = useStore()
