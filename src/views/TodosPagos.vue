@@ -13,6 +13,7 @@
       <router-link class="btn btn-success me-2" to="/tipoPago">Agregar Tipo Pago</router-link>
     <router-link class="btn btn-secondary me-2" to="/todosTipoPago"> Tipo Pago</router-link>
 </div> 
+<input type="text" placeholder="Buscar..." class="form-control rouded mb-2" >
   <table class="table table-striped">
    <thead>
     <tr>

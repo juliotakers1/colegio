@@ -13,6 +13,7 @@
       
 
 </div> 
+<input type="text" placeholder="Buscar..." class="form-control rouded mb-2" >
   <table class="table table-striped">
    <thead>
     <tr>

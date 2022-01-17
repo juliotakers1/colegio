@@ -12,7 +12,9 @@
   <router-link class="btn btn-primary me-2" to="/inscripcion">Agregar Inscripción</router-link>
      <router-link class="btn btn-success me-2" to="/grados">Nuevo Grado</router-link>
 <router-link class="btn btn-secondary me-2" to="/todosGrados">  Grados</router-link>
+ 
 </div> 
+<input type="text" placeholder="Buscar..." class="form-control rouded mb-2" >
   <table class="table table-striped">
    <thead>
     <tr>
