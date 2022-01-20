@@ -13,7 +13,7 @@
       
 
 </div> 
-<input type="text" placeholder="Buscar..." class="form-control rouded mb-2" >
+<BuscarGrado />
   <table class="table table-striped">
    <thead>
     <tr>
@@ -57,6 +57,7 @@
 <script>
 import moment from 'moment'
  import Navbar from '../components/Navbar'
+ import BuscarGrado from '../components/BuscarGrado'
  import {useStore, mapState, mapActions} from 'vuex'
 import { computed, onMounted, Vue } from 'vue'
   
@@ -64,7 +65,8 @@ import { computed, onMounted, Vue } from 'vue'
  
 export default {
     components:{
-        Navbar
+        Navbar,
+        BuscarGrado
     },
      
     methods: {
@@ -73,11 +75,11 @@ export default {
 	},
      setup() {
        const store = useStore()
-       const grados = computed(() => store.state.grados)
+       const grados = computed(() => store.state.gradosFiltrados)
 
-      //  onMounted(async() => {
-      //    await store.dispatch('cargarGrado')
-      //  })
+       onMounted(async() => {
+         await store.dispatch('cargarGrado')
+       })
 
        return{ grados   }
      },

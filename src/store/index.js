@@ -19,6 +19,7 @@ export default createStore({
     grado:{
       nombreGrado:""
     },
+    gradosFiltrados:[],
     pagos:[],
     pago:{
       nombreEstudiante:"",
@@ -89,6 +90,10 @@ export default createStore({
       state.grados = state.grados.map(item => item._id === payload._id ? payload : item)
       router.push('/todosGrados')
     },
+    setGradosFiltrados(state,payload){
+      state.gradosFiltrados = payload
+    },
+
     setPago(state,payload){
       state.pagos = payload
       router.push('/todospagos')
@@ -135,6 +140,19 @@ export default createStore({
     },
   },
   actions: {
+    filtroBuscarGrado({commit,state},texto){
+      const textoCliente = texto.toLowerCase()
+      const filtro = state.grados.filter(grado =>{
+        const textoApi = grado.nombreGrado.toLowerCase()
+        if(textoApi.includes(textoCliente)){
+          return grado
+        }
+      })
+      commit('setGradosFiltrados',filtro)
+      console.log(texto)
+      console.log(filtro)
+       
+    },
     async ingresoUsuario({commit},usuario){ 
       try {
         const res = await fetch('https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyDOaskbOhfrxQWjzTsQ49xksYv3YlkUgyI',{
