@@ -261,6 +261,7 @@ export default createStore({
         const datos = res.data.grados
         console.log(datos)
         commit('cargarGrado',datos)
+          
       })
     },
     async setGrados({commit}, grado){
